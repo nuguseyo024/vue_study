@@ -1,9 +1,25 @@
 <template>
-  <div>Users</div>
+  <div>
+    <strong>??</strong>
+    <p>name : {{ userInfo.id }}</p>
+    <p>karma : {{ userInfo.karma }}</p>
+    <p>created : {{ userInfo.created }}</p>
+  </div>
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    userInfo() {
+      return this.$store.state.user;
+    },
+  },
+
+  created() {
+    const userName = this.$route.params.id;
+    this.$store.dispatch("FETCH_USER", userName);
+  },
+};
 </script>
 
 <style></style>
